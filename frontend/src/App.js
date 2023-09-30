@@ -1,11 +1,15 @@
 import Navbar from "./components/Navbar";
-import ProductsList from "./components/ProductsList";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
-     <ProductsList/>
+     <Home/>
+     <Login/>
+     <Signup/>
     </div>
   );
 }

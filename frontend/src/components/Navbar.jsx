@@ -1,7 +1,7 @@
 import React from 'react'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 
 function Navbar() {
@@ -67,8 +67,13 @@ function Navbar() {
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+              
+                 <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+              
                 </button>
+                  <span className="inline-flex items-center rounded-md mb-7 -ml-1 bg-red-50 px-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+        3
+      </span>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -78,8 +83,8 @@ function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
+                        src="../image/resume photo.jpg"
+                        alt="hii"
                       />
                     </Menu.Button>
                   </div>
