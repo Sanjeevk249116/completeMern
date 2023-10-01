@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 
-function AuthContainer() {
+export const AuthContainVal=createContext();
+function AuthContainer({children}) {
+  const [show, setShow] = useState(false);
   return (
-    <div>
-      hello
-    </div>
+    <AuthContainVal.Provider value={{show, setShow}}>
+   {children}
+    </AuthContainVal.Provider>
   )
 }
 

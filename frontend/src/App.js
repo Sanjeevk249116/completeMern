@@ -1,5 +1,5 @@
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-
 import MainRouters from "./routes/MainRouters";
 
 function App() {
@@ -8,6 +8,8 @@ function App() {
       <Navbar/>
      
      <MainRouters/>
+     <Footer/>
+   
     </div>
   );
 }
