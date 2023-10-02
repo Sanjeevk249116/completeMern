@@ -50,7 +50,7 @@ function StackList() {
 
   const sendData=(e,el)=>{
   
-  console.log(el.images[0])
+
   }
 
   return (
