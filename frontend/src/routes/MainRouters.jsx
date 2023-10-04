@@ -8,6 +8,9 @@ import Checkout from "../pages/Checkout";
 import Payment from "../pages/Payment";
 import StackList from "../pages/StackList";
 import ProductDetails from "../pages/ProductDetails";
+import NotFound from "../pages/NotFound";
+import SuccessFull from "../pages/SuccessFull";
+import Order from "../pages/Order";
 function MainRouters() {
   return (
     <Routes>
@@ -19,6 +22,9 @@ function MainRouters() {
       <Route path="/payment" element={<Payment/>} />
       <Route path="/stacklist" element={<StackList/>} />
       <Route path="/productdetails" element={<ProductDetails/>} />
+      <Route path="/success" element={<SuccessFull/>} />
+      <Route path="/order" element={<Order/>} />
+      <Route path="*" element={<NotFound/>}/>
     </Routes>
   );
 }

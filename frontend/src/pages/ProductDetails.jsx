@@ -1,8 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, } from "react-router-dom";
+import swal from 'sweetalert';
+import { AuthContainVal } from "../AuthProvider/AuthContainer";
+
 
 function ProductDetails() {
-  const [rotate, setRotate] = useState(false);
+const{lt,setLt}=useContext(AuthContainVal)
+  const cart=JSON.parse(localStorage.getItem("cart"))
   const [count, setCount] = useState(1);
 
   const addCount = () => {
@@ -14,6 +18,21 @@ function ProductDetails() {
       setCount((prev) => prev - 1);
     }
   };
+     const arr=JSON.parse(localStorage.getItem("item"))||[];
+  setLt(arr.length)
+  const handleData=()=>{
+       const dt=arr.filter((el)=>{
+          return el.id===cart.id
+       })
+
+       if(dt.length!==0){
+        swal("item is already added in the cart");
+       }else{
+        arr.push(cart);
+        localStorage.setItem("item",JSON.stringify(arr));
+       }
+
+  }
 
   return (
     <div className="2xl:container 2xl:mx-auto lg:py-10 lg:px-20 md:py-12 md:px-6 py-10 px-4 ">
@@ -23,7 +42,7 @@ function ProductDetails() {
         <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center lg:-mt-10">
           
           <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-1">
-            Wooden Stool
+            {cart?.title}
           </h2>
 
           <div className=" flex flex-row justify-between  mt-5">
@@ -100,13 +119,10 @@ function ProductDetails() {
           </div>
 
           <p className=" font-normal text-base leading-6 text-gray-600 mt-7">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using. Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters.
+           {cart?.description}
           </p>
           <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-            $ 790.89
+            $ {cart?.price}
           </p>
 
           <div className="lg:mt-11 mt-10">
@@ -141,13 +157,15 @@ function ProductDetails() {
             <hr className=" bg-gray-200 w-full mt-4" />
           </div>
 
-          <button className="focus:outline-none focus:ring-2 hover:bg-blue-900 focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-2/5 py-5 lg:mt-12 mt-6 mr-10 rounded p-10">
+         <Link to={"/cartpage"}>
+         <button className="focus:outline-none focus:ring-2 hover:bg-blue-900 focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-2/5 py-5 lg:mt-12 mt-6 mr-10 rounded p-10" onClick={handleData}>
             Add to shopping bag
           </button>
+         </Link>
           
           <Link to={'/checkout'}>
           <button className="focus:outline-none focus:ring-2 hover:bg-red-900 focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-red-600 w-2/5 py-5 lg:mt-12 mt-6 rounded p-10">
-            BUY
+            BUY at at {count*cart.price}
           </button>
           </Link>
         </div>
@@ -157,26 +175,26 @@ function ProductDetails() {
         <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
           <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
             <img
-              src="https://i.ibb.co/bRg2CJj/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1.png"
+              src={cart.thumbnail}
               alt="Wooden Chair Previw"
             />
           </div>
           <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
             <div className="bg-gray-100 flex justify-center items-center py-4">
               <img
-                src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png"
+                src={cart.length!==0?cart.images[0]:<></>}
                 alt="Wooden chair - preview 1"
               />
             </div>
             <div className="bg-gray-100 flex justify-center items-center py-4">
               <img
-                src="https://i.ibb.co/7zv1N5Q/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-2.png"
+                src={cart.length!==0?cart.images[1]:<></>}
                 alt="Wooden chair - preview 2"
               />
             </div>
             <div className="bg-gray-100 flex justify-center items-center py-4">
               <img
-                src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png"
+                src={cart.length!==0?cart.images[2]:<></>}
                 alt="Wooden chair- preview 3"
               />
             </div>

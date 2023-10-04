@@ -4,7 +4,7 @@ function Payment() {
   const countries = ["China", "Russia", "UK","India"];
   const [menu, setMenu] = useState(false);
   const [country, setCountry] = useState("India");
-
+  let price=localStorage.getItem("price")
   const changeText = (e) => {
     setMenu(false);
     setCountry(e.target.textContent);
@@ -54,28 +54,24 @@ function Payment() {
             <p className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
              Payment
             </p>
+            <p className="text-2xl lg:text-1xl font-semibold leading-7 pt-5 lg:leading-9 text-gray-800">
+            Total Price: ${price}
+            </p>
            
           </div>
 
           <div className="flex flex-col xl:flex-row justify-center xl:justify-between space-y-6 xl:space-y-0 xl:space-x-6 w-full">
-            <div className="xl:w-3/5 flex flex-col sm:flex-row xl:flex-col justify-center items-center bg-gray-100 py-7 sm:py-0 xl:py-10 px-10 xl:w-full">
-              <div className="flex flex-col justify-start items-start w-full space-y-4">
-                <p className="text-xl md:text-2xl leading-normal text-gray-800">
-                  Logitech K251
-                </p>
-                <p className="text-base font-semibold leading-none text-gray-600">
-                  $520.00
-                </p>
-              </div>
-              <div className="mt-6 sm:mt-0 xl:my-10 xl:px-20 w-52 sm:w-96 xl:w-auto">
-                <img
-                  src="https://i.ibb.co/0GFzTP4/Rectangle-131.png"
-                  alt="headphones"
-                />
-              </div>
-            </div>
+            
 
-            <div className="p-8 bg-gray-100 flex flex-col lg:w-full xl:w-3/5">
+            <div className="p-8 bg-gray-100 flex flex-col lg:w-full ">
+             <Link to={'/success'}>
+             <button className="border border-transparent hover:border-gray-300 bg-red-900 hover:bg-blue-400 text-white hover:text-gray-900 flex flex-row justify-center items-center space-x-2 py-4 mb-10 rounded w-full">
+                
+                <div>
+                  <p className="text-base leading-4">Pay with UPI</p>
+                </div>
+              </button>
+             </Link>
               <button className="border border-transparent hover:border-gray-300 bg-gray-900 hover:bg-white text-white hover:text-gray-900 flex flex-row justify-center items-center space-x-2 py-4 rounded w-full">
                 
                 <div>
@@ -193,7 +189,7 @@ function Payment() {
 
               <button className="mt-8 border border-transparent hover:border-gray-300 bg-gray-900 hover:bg-white text-white hover:text-gray-900 flex justify-center items-center py-4 rounded w-full">
                 <div>
-                  <p className="text-base leading-4">Pay $54652</p>
+                  <p className="text-base leading-4">Pay ${price}</p>
                 </div>
               </button>
             </div>

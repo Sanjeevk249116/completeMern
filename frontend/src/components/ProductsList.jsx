@@ -17,7 +17,7 @@ import { getData } from "../redux/action";
 import { AuthContainVal } from "../AuthProvider/AuthContainer";
 
 function ProductsList() {
-  const { products, setProducts, pages, setPages } = useContext(AuthContainVal);
+  const { products, setProducts, pages, setPages,setCart,cart } = useContext(AuthContainVal);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const sortOptions = [
@@ -90,6 +90,10 @@ function ProductsList() {
     }
   }
 
+  const cartData=(el)=>{
+    localStorage.setItem("cart",JSON.stringify(el))
+  }
+  
   return (
     <div>
       <div className="bg-white">
@@ -355,7 +359,7 @@ function ProductsList() {
 
                       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                         {products?.map((product) => (
-                          <Link to={"/productdetails"}>
+                          <Link to={"/productdetails"} onClick={(e)=>cartData(product)}>
                             <div key={product.id} className="group relative">
                               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                 <img
